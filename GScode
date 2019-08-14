@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Page Restricted</title>
+	<script language="JavaScript">
+		function getParameter(name) {
+			name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			var regexS = "[\\?&]"+name+"=([^&#]*)";  
+			var regex = new RegExp( regexS );
+			var results = regex.exec( window.location.href );
+			if ( results == null ) {
+				return "";
+			} else {
+				return results[1];
+			}
+		};
+		function decode(encodedItem) {
+			return decodeURIComponent(encodedItem.replace(/\+/g,  " "));
+		};
+		function displaySections() {
+			if (getParameter('ldu') == '1') {
+				document.getElementById('loginDifferentUser').innerHTML = '<a href=\"javascript:openSessionInNewWindow();\" onClick=\"openSessionInNewWindow();this.blur();return false;\" class=\"submit-btn\">Login</a>';
+			}
+			if (getParameter('re') == '1') {
+				document.getElementById('exception1').innerHTML = 'Request An Exception';
+				document.getElementById('exception2').innerHTML = 'Reason:';
+				document.getElementById('exception3').innerHTML = '<textarea id="rem2" name="rem2" rows="3" cols="40"></textarea>';
+				document.getElementById('exception4').innerHTML = '<a href=\"javascript:requestOverride();\" class=\"submit-btn\" onClick=\"this.blur();\">Request Exception</a>';
+				document.getElementById('exception5').innerHTML = 'Email:';
+				document.getElementById('exception6').innerHTML = '<input type=\"text\" id=\"rem3\" name=\"rem3\">';
+			} else {
+				document.getElementById('exception').className = "hidden";
+			}
+			document.getElementById('url').innerHTML = '<a href="http://' + decode(getParameter('bu')) + '">' + decode(getParameter('bu')) + '</a>';
+			document.getElementById('description').innerHTML = decode(getParameter('bc'));
+			document.getElementById('groupNumber').innerHTML = decode(getParameter('fp'));
+			document.getElementById('groupName').innerHTML = decode(getParameter('fn'));
+			document.getElementById('ipAddress').innerHTML = decode(getParameter('ip'));
+			document.getElementById('clia').innerHTML = 'Currently logged into IP Address ' + decode(getParameter('ip'));
+			document.getElementById('customText').innerHTML = decode(getParameter('ct'));
+		};
+		function requestOverride() {
+			document.forms[0].fullUrl.value = decode(getParameter('bu'));
+			document.forms[0].button.value = 'requestException';
+			if(document.getElementById("rem2")) {
+				document.forms[0].rem.value = document.getElementById("rem2").value;
+			}
+			if(document.getElementById("rem3")) {
+				document.forms[0].contactEmail.value = document.getElementById("rem3").value;
+			}
+			document.forms[0].gn.value = decode(getParameter('fp'));
+			document.forms[0].action = 'http://' + getParameter('ibip') + '/page_block_submit';
+			document.forms[0].submit();
+		};
+		function openSessionInNewWindow() {
+			var iboss = getParameter('ibip');
+			
+			var newWindow = window.open('http://' + getParameter('ibip') + '/user_login_small.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			
+			if(iboss=='10.0.4.160'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+
+			else if(iboss=='10.0.4.161'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login2.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.162'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login3.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.163'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login4.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.164'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login5.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.165'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login6.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.166'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login7.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.167'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login8.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.168'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login9.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else if(iboss=='10.0.4.169'){
+				newWindow = window.open('http://cfreporter.pusd.us/block/login10.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+			else{
+				newWindow = window.open('http://cfreporter.pusd.us/block/mobile.html','iBossSessionWindow','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=625, height=650');
+			}
+
+			newWindow.focus();	
+			return false;
+		};
+	</script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+		}
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+		.hidden {
+			display: none;
+		}
+		.clearfix:after { 
+			content: "."; 
+			visibility: hidden; 
+			display: block; 
+			height: 0; 
+			clear: both;
+		}
+		.center-text {
+			text-align: center;
+		}
+		#header {
+			color: #444444;
+			background: #dbdbdb;
+			background: -moz-linear-gradient(top,  #dbdbdb 0%, #ffffff 23%, #ffffff 42%, #bfbfbf 100%);
+			background: -webkit-linear-gradient(top,  #dbdbdb 0%,#ffffff 23%,#ffffff 42%,#bfbfbf 100%);
+			background: linear-gradient(to bottom,  #dbdbdb 0%,#ffffff 23%,#ffffff 42%,#bfbfbf 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#bfbfbf',GradientType=0 );
+		}
+		.header-text {
+			padding: 0;
+			margin: 0;
+			font-size: 12px;
+			font-weight: bold;
+		}
+		#rem2 {
+			resize:none;
+			overflow:auto;
+			width: 100%;
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin: 10px 0;
+			box-sizing: border-box;
+		}
+		#rem3 {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			margin: 10px 0;
+			box-sizing: border-box;
+		}
+		#mainContent {
+			background: #dbdbdb;
+			background: -moz-linear-gradient(top,  #dbdbdb 0%, #ffffff 23%, #ffffff 42%, #bfbfbf 100%);
+			background: -webkit-linear-gradient(top,  #dbdbdb 0%,#ffffff 23%,#ffffff 42%,#bfbfbf 100%);
+			background: linear-gradient(to bottom,  #dbdbdb 0%,#ffffff 23%,#ffffff 42%,#bfbfbf 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#bfbfbf',GradientType=0 );
+		}
+		.center-content {
+			max-width: 1000px;
+			display: block;
+			margin: 0 auto;
+			padding: 15px;
+		}
+		.logo-img {
+			display: block;
+			margin: 20px auto;
+			max-width: 100%;
+		}
+		.restrict-content,
+		.exception-content {
+			padding: 15px;
+			box-sizing: border-box;
+		}
+		.restrict-content {
+			max-width: 1000px;
+		}
+		.exception-content {
+			max-width: 400px;
+			margin: 0 auto;
+		}
+		.submit-btn {
+			background: #3262a8;
+			background: -moz-linear-gradient(top,  #3262a8 0%, #4a91f7 100%);
+			background: -webkit-linear-gradient(top,  #3262a8 0%,#4a91f7 100%);
+			background: linear-gradient(to bottom,  #3262a8 0%,#4a91f7 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3262a8', endColorstr='#4a91f7',GradientType=0 );
+			text-align: center;
+			color: #ffffff;
+			border-radius: 20px;
+			padding: 5px 15px;
+			margin: 10px 0;
+			display: inline-block;
+			text-decoration: none;
+		}
+		.left-content {
+			width: 50%;
+			float: left;
+		}
+		.right-content {
+			width: 50%;
+			float: right;
+		}
+		.warning-icon {
+			margin: 40px auto;
+			display: block;
+		}
+		@media (max-width:768px) {
+			.left-content,
+			.right-content {
+				width: 100%;
+				float: none;
+			}
+			.warning-icon {
+				margin: 0 auto 40px auto;
+				max-width: 150px;
+			}
+			.restrict-content {
+				max-width: 400px;
+				margin: 0 auto;
+			}
+		}
+		#logoContainer {
+			background: #3262a8;
+			background: -moz-linear-gradient(top,  #3262a8 0%, #4a91f7 100%);
+			background: -webkit-linear-gradient(top,  #3262a8 0%,#4a91f7 100%);
+			background: linear-gradient(to bottom,  #3262a8 0%,#4a91f7 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3262a8', endColorstr='#4a91f7',GradientType=0 );
+			text-align: center;
+			padding: 15px;
+		}
+		#logoContainer .center-content {
+			padding: 0 15px;
+		}
+		#logoContainer img {
+			max-width: 150px;
+			padding:0;
+			margin: 0 auto;
+		}
+		#logoContainer h1 {
+			color: #ffffff;
+			font-family: serif;
+			padding: 0;
+			margin: 0 auto;
+		}
+		.stripe {
+			width: 100%;
+			height: 150px;
+		}
+		.stripe img {
+			width: 100%;
+			height: 150px;
+			min-width: 768px;
+		}
+	</style>
+</head>
+<body onLoad="javascript:displaySections();">
+	<div id="header">
+		<div class="center-content">
+			<p id="clia" class="header-text"></p>
+		</div>
+	</div>
+	<div id="logoContainer">
+		<div class="center-content">
+			<img class="logo-img" src="logo.png"/>
+			<h1>PASADENA UNIFIED SCHOOL DISTRICT</h1>
+		</div>
+	</div>
+	<div class="stripe">
+		<img src="bg.png" />
+	</div>
+	<div id="mainContent">
+		<div class="center-content">
+			<div class="restrict-content clearfix">
+				<div class="left-content">
+					<img class="warning-icon" src="block.png" />
+				</div>
+				<div class="right-content">
+					<h2>Page Blocked</h2>
+					<h3 id="url"></h3>
+					<p>Access to the requested site has been restricted due to its contents.</p>
+					<p>
+						<span id="customText"></span><br>
+						<b>Description: </b><span id="description"></span><br>
+						<b>Group Number: </b><span id="groupNumber"></span><br>
+						<b>Group Name: </b><span id="groupName"></span><br>
+						<b>Ip Address: </b><span id="ipAddress"></span>
+						<div id="loginDifferentUser"></div>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center-content">
+		<div id="exception" class="exception-content">
+			<form action="" method="POST" >
+				<input type="hidden" name="button">
+				<input type="hidden" name="fullUrl">
+				<input type="hidden" name="rem">
+				<input type="hidden" name="contactEmail">
+				<input type="hidden" name="gn">
+				<h2><span id="exception1"></span></h2>
+				<p>
+					<span id="exception5"></span><br>
+					<span id="exception6"></span><br>
+					<span id="exception2"></span><br>
+					<span id="exception3"></span><br>
+					<span id="exception4"></span><br>
+				</p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
